@@ -63,7 +63,7 @@ export const addFavorite = async ({ id }: AddFavoriteArgs) => {
     throw new Error(
       `Failed to fetch data: ${data.status} ${data.statusText} ${data.url}`,
     );
-  return data;
+  return JSON.parse(JSON.stringify(data));
 };
 
 // Remove favorite

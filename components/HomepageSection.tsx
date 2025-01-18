@@ -25,13 +25,16 @@ const HomepageSection = ({
 }: HomepageSectionProps) => {
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [favorites, setFavorites] = useState<Product[]>([]);
+  const [favorites, setFavorites] = useState<Product["id"][]>([]);
 
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetchProducts({ category, offset: 0, limit: 6 }).then((products) => {
       setProducts(products);
+    });
+    getFavorites().then((favorites) => {
+      setFavorites(favorites);
     });
   }, []);
 
@@ -59,6 +62,7 @@ const HomepageSection = ({
                     favorites={favorites}
                     onSubmit={async () => {
                       const newFavorites = await getFavorites();
+                      console.log("newFavorites", newFavorites);
                       setFavorites(newFavorites);
                       return newFavorites;
                     }}
