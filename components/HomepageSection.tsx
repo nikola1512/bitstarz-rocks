@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import Image from "next/image";
-import { addFavorite, getFavorites } from "@/app/actions";
+import { addFavorite, removeFavorite, getFavorites } from "@/app/actions";
 import CarouselButton from "@/components/CarouselButton";
 
 type HomepageSectionProps = {
@@ -59,6 +59,7 @@ const HomepageSection = ({
                   <FavoriteButton
                     product={product}
                     addFavorite={addFavorite}
+                    removeFavorite={removeFavorite}
                     favorites={favorites}
                     onSubmit={async () => {
                       const newFavorites = await getFavorites();
